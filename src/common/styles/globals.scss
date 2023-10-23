@@ -1,0 +1,56 @@
+@import 'variables';
+@import 'fonts';
+@import 'mixins';
+@import 'helpers';
+@import 'notification';
+
+ul,
+ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  @include font(16px, 400, normal, 1.3);
+
+  //background-size: cover;
+  font-family: FixelDisplay, sans-serif;
+  color: $color-white;
+  //@extend %scrollbar-style;
+  //@extend %scrollbar-thumb;
+  //@extend %scrollbar-thumb-hover;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+button {
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: $color-white-200;
+}
+
+
+html {
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+}
+
+#__next {
+  min-height: 100vh;
+  @include flex-column;
+}

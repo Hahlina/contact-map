@@ -1,0 +1,109 @@
+@import "src/common/styles/variables";
+
+$modal-width-config: (
+        xs: 400,
+        sm: 600,
+        md: 750,
+        lg: 900,
+        xl: 1200,
+);
+
+.react-responsive-modal {
+  &-root {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+  }
+
+  &-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    backdrop-filter: blur(10px);
+    background: rgba($color-grey-400, 0.48);
+  }
+
+  &-container {
+    height: 100%;
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+  }
+
+  &-modal {
+    position: relative;
+    display: inline-block;
+    width: calc(100% - 40px);
+    margin: 20px;
+    padding: 0;
+    border-radius: 1px;
+    background-color: transparent;
+    box-shadow: $box-shadow;
+    text-align: left;
+    vertical-align: middle;
+    background-clip: unset;
+
+    @each $key, $value in $modal-width-config {
+      &.#{$key} {
+        max-width: #{$value}px;
+      }
+    }
+  }
+
+  &-containerCenter::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  &-closeButton {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    z-index: 1000;
+    display: flex;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    svg {
+      fill: $color-white;
+    }
+  }
+
+  &-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    color: $color-white;
+  }
+
+  &-body {
+    position: relative;
+    flex: 1 1 auto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+  }
+
+  &-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 24px 16px;
+  }
+}

@@ -1,0 +1,40 @@
+@import '../variables';
+
+@mixin xs {
+  @media (min-width: $breakpoint-xs) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin l {
+  @media (min-width: $breakpoint-l) {
+    @content;
+  }
+}
+@mixin xl {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin four-k {
+  @media (min-width: $breakpoint-four-k) {
+    @content;
+  }
+}
