@@ -7,7 +7,7 @@ import useOnClickOutside from '@/common/hooks/useClickOutside';
 import { BiLogOut } from 'react-icons/bi';
 import Avatar from '../../assets/placeholders/avatar.jpg';
 
-import styles from './UserPopUp.module.scss';
+import styles from './UserPopup.module.scss';
 
 interface User {
   name?: string;
