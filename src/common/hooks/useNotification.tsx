@@ -25,7 +25,7 @@ export const useNotification = () =>
   useCallback(
     (
       content: ToastContent,
-      type: TypeOptions = NOTIFICATION_TYPES.Info,
+      type: TypeOptions = NOTIFICATION_TYPES.INFO,
       config?: ToastOptions,
     ) =>
       toast(content, {

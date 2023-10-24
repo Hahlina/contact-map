@@ -20,7 +20,7 @@ export const LoginModal: FC<ILoginModalProps> = ({ isOpen, onClose }) => {
       center={true}
       withFooter={false}
     >
-      <LoginForm />
+      <LoginForm onClose={onClose} />
     </Modal>
   );
 };

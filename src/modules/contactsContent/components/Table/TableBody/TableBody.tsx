@@ -12,7 +12,7 @@ interface ITableBodyProps<T> {
   data: T[];
 }
 
-export const TableBody: FC<ITableBodyProps<Record<string, any>>> = ({ data }) => {
+export const TableBody: FC<ITableBodyProps<any>> = ({ data }) => {
   const [showContactsUpdateModal] = useModal(ContactUpdateModal);
   const [showContactsRemoveModal] = useModal(RemoveContactConfirmModal);
   const keys = Object.keys(data[0]);

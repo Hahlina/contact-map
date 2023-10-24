@@ -4,16 +4,19 @@ import { TableData } from '@/common/types/Api';
 
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://technical-task-api.icapgroupgmbh.com/api',
+  }),
   tagTypes: ['Contacts'],
   endpoints(build) {
     return {
-      fetchAllContacts: build.query<TableData, TableData>({
-        query: () => ({
+      fetchAllContacts: build.query<any, { limit?: number; offset?: number }>({
+        query: (params) => ({
           url: '/table/',
           method: 'GET',
+          params,
         }),
-        providesTags: () => ['Contacts'],
+        providesTags: ['Contacts'],
       }),
       updateContact: build.mutation<TableData, TableData>({
         query: (contact) => ({

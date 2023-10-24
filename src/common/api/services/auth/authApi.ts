@@ -4,13 +4,15 @@ import { CustomAuth } from '@/common/types/Api';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://technical-task-api.icapgroupgmbh.com/api',
+  }),
   tagTypes: ['Auth'],
   endpoints(build) {
     return {
       login: build.mutation({
         query: (data: CustomAuth) => ({
-          url: '/login',
+          url: '/login/',
           method: 'POST',
           body: data,
         }),

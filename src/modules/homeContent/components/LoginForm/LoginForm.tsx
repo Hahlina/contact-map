@@ -1,3 +1,5 @@
+import { FC } from 'react';
+import { useRouter } from 'next/navigation';
 import Input from '@/common/components/Input/Input';
 import { Button } from '@/common/components/Button/Button';
 import { useForm } from 'react-hook-form';
@@ -8,7 +10,9 @@ import { CustomAuth } from '@/common/types/Api';
 import { loginSchema } from '@/common/validateSchemas/loginSchema';
 import { useLocalStorageWrite } from '@/common/hooks/useLocalStorageWrite';
 import { useLoginMutation } from '@/common/api/services/auth/authApi';
+import { useAppDispatch } from '@/common/hooks/redux/redux';
 import { useNotification } from '@/common/hooks/useNotification';
+import { login } from '@/common/store/reducers/authSlice';
 import { NotificationContent } from '@/common/components/NotificationContent/NotificationContent';
 import {
   AUTH_MESSAGES,
@@ -16,14 +20,21 @@ import {
   NOTIFICATION_TYPES,
 } from '@/common/constants/notification';
 import { LOCAL_STORAGE } from '@/common/constants/localStorage';
+import { ROUTES } from '@/common/constants/routes';
 import { EMPTY_STRING } from '@/common/constants/initValue';
 
 import styles from './LoginForm.module.scss';
 
-export const LoginForm = () => {
+interface ILoginFormProps {
+  onClose?: () => void;
+}
+
+export const LoginForm: FC<ILoginFormProps> = ({ onClose }) => {
   const notify = useNotification();
+  const router = useRouter();
   const setAuth = useLocalStorageWrite(LOCAL_STORAGE.AUTH);
-  const [login, { data, isError, isLoading }] = useLoginMutation();
+  const dispath = useAppDispatch();
+  const [loginCreate, { isLoading }] = useLoginMutation();
   const formMethods = useForm<CustomAuth>({
     defaultValues: {
       [INPUT_FIELD.USERNAME]: EMPTY_STRING,
@@ -37,28 +48,48 @@ export const LoginForm = () => {
     handleSubmit,
     register,
     formState: { errors },
+    setError,
     reset,
   } = formMethods;
 
   const onSubmit = async (data: CustomAuth) => {
     try {
-      const sendLogin = await login(data);
-      setAuth(true);
-
-      if (isError) {
-        return notify(
-          <NotificationContent
-            title={NOTIFICATION_TITLE.ERROR}
-            body={AUTH_MESSAGES.LOGIN_ERROR}
-          />,
-          NOTIFICATION_TYPES.ERROR,
-        );
+      const loginResponce = await loginCreate(data);
+      if ('error' in loginResponce) {
+        throw new Error(JSON.stringify(loginResponce));
       }
-    } catch (e) {
-      console.log('-> e', e);
+      notify(
+        <NotificationContent
+          title={NOTIFICATION_TITLE.SUCCESS}
+          body={AUTH_MESSAGES.SUCCESS}
+        />,
+        NOTIFICATION_TYPES.SUCCESS,
+      );
+      setAuth(true);
+      dispath(login);
+      router.push(ROUTES.CONTACTS);
+      reset();
+      onClose?.();
+    } catch (error) {
+      if (error instanceof Error) {
+        const errorData = JSON.parse(error.message);
+        const errorMessage = errorData?.error?.data?.error;
+        if (errorData && errorMessage) {
+          return notify(
+            <NotificationContent title={NOTIFICATION_TITLE.ERROR} body={errorMessage} />,
+            NOTIFICATION_TYPES.ERROR,
+          );
+        } else
+          return notify(
+            <NotificationContent
+              title={NOTIFICATION_TITLE.ERROR}
+              body={AUTH_MESSAGES.ERROR}
+            />,
+            NOTIFICATION_TYPES.ERROR,
+          );
+      }
     }
   };
-
   return (
     <div className={styles.formWrapper}>
       <p className={styles.title}>Sign In</p>

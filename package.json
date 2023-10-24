@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "npx swagger-typescript-api  -p https://technical-task-api.icapgroupgmbh.com/swagger/ -o src/common/types",
+    "predev": "npx swagger-typescript-api  -p https://technical-task-api.icapgroupgmbh.com/swagger/?format=openapi -o src/common/types",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

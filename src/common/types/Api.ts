@@ -107,7 +107,7 @@ export enum ContentType {
 }
 
 export class HttpClient<SecurityDataType = unknown> {
-  public baseUrl: string = 'http://146.190.118.121/api';
+  public baseUrl: string = 'https://technical-task-api.icapgroupgmbh.com/api';
   private securityData: SecurityDataType | null = null;
   private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private abortControllers = new Map<CancelToken, AbortController>();
@@ -293,7 +293,7 @@ export class HttpClient<SecurityDataType = unknown> {
 /**
  * @title Technical task
  * @version v1
- * @baseUrl http://146.190.118.121/api
+ * @baseUrl https://technical-task-api.icapgroupgmbh.com/api
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   login = {

@@ -9,8 +9,9 @@ export enum NOTIFICATION_TITLE {
   INFO = 'Information',
 }
 export enum AUTH_MESSAGES {
-  LOGIN_SUCCESS = 'Welcome back',
-  LOGIN_ERROR = 'Login error. Unfortunately not today)',
+  SUCCESS = 'Welcome back',
+  UNAUTORIZED = 'No user with such data was found',
+  ERROR = 'Login error. Unfortunately not today)',
 }
 
 export enum TABLE_ACTION_MESSAGES {
