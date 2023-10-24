@@ -1,12 +1,13 @@
-import styles from './ContactsContent.module.scss';
 import { Table } from '@/common/components/Table/Table';
 import { tableData } from '../../../fakeData';
-import { TableData } from '@/common/types/Api';
+
+import styles from './ContactsContent.module.scss';
 
 export const ContactsContent = () => {
   const fakeData = tableData;
   return (
-    <div>
+    <div className={styles.contactsWrapper}>
+      <h2>/Contacts</h2>
       <Table data={fakeData} />
     </div>
   );

@@ -1,5 +1,4 @@
 @import 'variables';
-@import 'fonts';
 @import 'mixins';
 @import 'helpers';
 @import 'notification';
@@ -14,12 +13,9 @@ ol {
 body {
   @include font(16px, 400, normal, 1.3);
 
-  //background-size: cover;
   font-family: FixelDisplay, sans-serif;
   color: $color-white;
-  //@extend %scrollbar-style;
-  //@extend %scrollbar-thumb;
-  //@extend %scrollbar-thumb-hover;
+
 }
 
 * {

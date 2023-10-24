@@ -1,13 +1,17 @@
+@import "@/common/styles/mixins";
+
 .tableWrapper{
+  @include flex-center;
+
   width: 100%;
   overflow: scroll;
 
+
   table{
     width: 100%;
-    max-width: 1200px;
+    max-width: 900px;
     min-width: 800px;
     border-collapse: collapse;
     table-layout: fixed;
-    overflow: scroll;
   }
 }

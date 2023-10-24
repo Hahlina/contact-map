@@ -6,10 +6,8 @@ import { INPUT_FIELD } from '@/common/components/Input/inputField';
 import { FORM_FIELD } from '@/common/constants/formField';
 import { CustomAuth } from '@/common/types/Api';
 import { loginSchema } from '@/common/validateSchemas/loginSchema';
-import { EMPTY_STRING } from '@/common/constants/initValue';
-
-import styles from './LoginForm.module.scss';
-import { useLoginMutation } from '@/common/api/services/auth/auth';
+import { useLocalStorageWrite } from '@/common/hooks/useLocalStorageWrite';
+import { useLoginMutation } from '@/common/api/services/auth/authApi';
 import { useNotification } from '@/common/hooks/useNotification';
 import { NotificationContent } from '@/common/components/NotificationContent/NotificationContent';
 import {
@@ -17,8 +15,10 @@ import {
   NOTIFICATION_TITLE,
   NOTIFICATION_TYPES,
 } from '@/common/constants/notification';
-import { useLocalStorageWrite } from '@/common/hooks/useLocalStorageWrite';
 import { LOCAL_STORAGE } from '@/common/constants/localStorage';
+import { EMPTY_STRING } from '@/common/constants/initValue';
+
+import styles from './LoginForm.module.scss';
 
 export const LoginForm = () => {
   const notify = useNotification();

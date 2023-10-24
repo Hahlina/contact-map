@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
+import { BaseLayout } from '@/common/layouts/BaseLayout/BaseLayout';
 
 import 'normalize.css/normalize.css';
 import '@/common/styles/main.scss';
-import { BaseLayout } from '@/common/layouts/BaseLayout/BaseLayout';
 
 export const metadata: Metadata = {
   title: 'Contact-map',
