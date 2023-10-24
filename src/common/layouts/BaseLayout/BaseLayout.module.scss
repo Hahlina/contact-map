@@ -1,5 +1,5 @@
 .mainWrapper {
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   background: url('../../assets/background.jpeg') no-repeat;
   background-size: cover;
 }
