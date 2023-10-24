@@ -1,0 +1,39 @@
+@import '@/common/styles/variables';
+@import '@/common/styles/mixins';
+
+.confirmModal {
+  @include font(16px, 400, normal, 150%);
+
+  max-width: 450px;
+  padding: 0 clamp(1.25rem, -0.972rem + 11.11vw, 2.5rem);
+  border-radius: 20px;
+  border: 1px solid $color-grey-100;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  text-align: center;
+  letter-spacing: 0.32px;
+}
+
+.header {
+  @include font(20px, 400);
+
+  margin: 40px 0;
+  letter-spacing: 0.4px;
+}
+
+.bodyModal {
+  color: $color-grey-100;
+}
+
+.footer {
+  @include flex-center-column;
+
+  margin: 20px 0 clamp(1.875rem, 0.764rem + 5.56vw, 2.5rem) 0;
+  gap: 10px;
+}
+
+.button {
+  width: 100%;
+}
+

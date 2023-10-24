@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 import { useModal } from '@/common/hooks/useModal/useModal';
 import { ContactUpdateModal } from '@/modules/contactsContent/components/ContactUpdateModal/ContactUpdateModal';
+import { RemoveContactConfirmModal } from '@/modules/contactsContent/components/RemoveContactConfirmModal/RemoveContactConfirmModal';
 import { getUniqID } from '@/common/utils/getUniqID';
 
 import styles from './TableBody.module.scss';
@@ -13,6 +14,7 @@ interface ITableBodyProps<T> {
 
 export const TableBody: FC<ITableBodyProps<Record<string, any>>> = ({ data }) => {
   const [showContactsUpdateModal] = useModal(ContactUpdateModal);
+  const [showContactsRemoveModal] = useModal(RemoveContactConfirmModal);
   const keys = Object.keys(data[0]);
 
   return (
@@ -27,7 +29,10 @@ export const TableBody: FC<ITableBodyProps<Record<string, any>>> = ({ data }) =>
               className={styles.editIcon}
               onClick={() => showContactsUpdateModal({ ...item })}
             />
-            <FiTrash2 className={styles.removeIcon} />
+            <FiTrash2
+              className={styles.removeIcon}
+              onClick={() => showContactsRemoveModal({ ...item })}
+            />
           </td>
         </tr>
       ))}

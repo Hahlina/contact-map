@@ -1,0 +1,14 @@
+@import '@/common/styles/variables';
+@import '@/common/styles/mixins';
+
+.header {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  height: 60px;
+  padding: 18px 20px 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  user-select: none;
+}

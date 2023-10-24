@@ -1,0 +1,107 @@
+@import '/src/common/styles/mixins';
+@import '/src/common/styles/variables';
+
+.wrapper {
+  @include font(16px, 400, normal, 150%);
+  @include flex-center-column;
+
+  position: relative;
+  letter-spacing: 0.32px;
+  color: $color-white;
+}
+
+.header {
+  display: flex;
+  gap: 20px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.arrow {
+  transform: rotate(-135deg);
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: auto 0;
+  border-top: 2px solid $color-white-100;
+  border-left: 2px solid $color-white-100;
+}
+
+.main {
+  position: absolute;
+  top: -40%;
+  right: -20px;
+  width: 267px;
+  background-color: rgba(255, 255, 255, 0.1);
+  visibility: hidden;
+}
+
+.show {
+  .main {
+    top: 50px;
+    z-index: 100;
+    visibility: visible;
+  }
+
+  .arrow {
+    transform: rotate(45deg);
+  }
+}
+
+.mainHeader {
+  @include flex-center-vertical;
+
+  justify-content: flex-start;
+  width: 100%;
+  padding: 15px 24px 10px 26px;
+  gap: 16px;
+}
+
+.image {
+  border-radius: 50%;
+}
+
+.userInfo {
+  max-width: 171px;
+
+  p {
+    @include truncate-one-line;
+  }
+
+  p:first-child {
+    color: $color-white-100;
+  }
+}
+
+.items {
+  @include flex-column;
+  width: 100%;
+  gap: 20px;
+  padding: 20px 40px;
+  border-top: 0.5px solid $color-white-200;
+}
+
+.item {
+  @include flex-center-vertical;
+  cursor: pointer;
+  gap: 10px;
+
+  a, p, span {
+    @include flex-center;
+    gap: 10px;
+  }
+
+  &:hover {
+    color: $color-white-100;
+
+
+    &:last-child {
+      span:first-child {
+        color: $color-red-200;
+      }
+    }
+  }
+}

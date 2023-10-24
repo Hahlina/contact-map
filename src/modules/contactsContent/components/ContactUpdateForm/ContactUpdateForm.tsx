@@ -17,6 +17,7 @@ import {
 } from '@/common/constants/notification';
 import { useUpdateContactMutation } from '@/common/api/services/contacts/contactsApi';
 import styles from './ContactUpdateForm.module.scss';
+import { contactUpdateSchema } from '@/common/validateSchemas/contactUpdateSchema';
 
 interface IContactUpdateFormProps extends TableData {
   onClose: () => void;
@@ -33,7 +34,6 @@ export const ContactUpdateForm: FC<IContactUpdateFormProps> = ({
 }) => {
   const notify = useNotification();
   const [updateContact, { data, isError, isLoading }] = useUpdateContactMutation();
-
   const formMethods = useForm<TableData>({
     defaultValues: {
       [INPUT_FIELD.NAME]: name,
@@ -44,7 +44,7 @@ export const ContactUpdateForm: FC<IContactUpdateFormProps> = ({
     },
 
     mode: 'onBlur',
-    // resolver: yupResolver(loginSchema),
+    resolver: yupResolver(contactUpdateSchema),
   });
 
   const {
@@ -55,6 +55,7 @@ export const ContactUpdateForm: FC<IContactUpdateFormProps> = ({
   } = formMethods;
 
   const onSubmit = async (data: TableData) => {
+    console.log('-> data', data);
     try {
       if (isError) {
         return notify(
@@ -97,7 +98,12 @@ export const ContactUpdateForm: FC<IContactUpdateFormProps> = ({
           {...register(INPUT_FIELD.PHONE_NUMBER)}
           errorMessage={errors?.phone_number?.message}
         />
-        <Button type={'submit'} variant={'glass'} disabled={isLoading}>
+        <Input
+          placeholder={FORM_FIELD.ADDRESS}
+          {...register(INPUT_FIELD.ADDRESS)}
+          errorMessage={errors?.address?.message}
+        />
+        <Button type={'submit'} variant={'glass'}>
           Update contact
         </Button>
       </form>

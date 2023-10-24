@@ -1,4 +1,4 @@
-import { Table } from '@/common/components/Table/Table';
+import { Table } from '@/modules/contactsContent/components/Table/Table';
 import { tableData } from '../../../fakeData';
 
 import styles from './ContactsContent.module.scss';

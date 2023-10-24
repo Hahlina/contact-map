@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { TableBody } from '@/common/components/Table/TableBody/TableBody';
-import { TableHead } from '@/common/components/Table/TableHead/TableHead';
+import { TableBody } from './TableBody/TableBody';
+import { TableHead } from './TableHead/TableHead';
 
 import styles from './Table.module.scss';
 

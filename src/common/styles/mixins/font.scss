@@ -4,3 +4,9 @@
   font-weight: $weight;
   line-height: $line-height;
 }
+
+@mixin truncate-one-line {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

@@ -1,11 +1,11 @@
 'use client';
 import { FC } from 'react';
 import { Modal } from '@/common/components/Modal/Modal';
-import { ContactUpdateForm } from '@/modules/contactsContent/components/ContactUpdateForm/ContactUpdateForm';
+import { ContactUpdateForm } from '../ContactUpdateForm/ContactUpdateForm';
 import { MODAL_SIZES } from '@/common/components/Modal/constants';
+import { TableData } from '@/common/types/Api';
 
 import styles from './ContactUpdateModal.module.scss';
-import { TableData } from '@/common/types/Api';
 
 interface IContactUpdateModalProps extends TableData {
   isOpen: boolean;

@@ -48,9 +48,9 @@
 }
 
 .errorMassage {
-  @include font(11px);
+  @include font(12px);
 
-  padding: 1px 0 0;
+  padding: 2px 0 0;
   color: $color-white;
 
   &::before {

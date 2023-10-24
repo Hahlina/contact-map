@@ -4,4 +4,5 @@ export enum FORM_FIELD {
   NAME = 'Name',
   BIRTHDAY = 'Birthday',
   PHONE = 'Phone',
+  ADDRESS = 'Address',
 }
