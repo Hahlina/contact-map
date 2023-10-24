@@ -6,7 +6,7 @@ import { Button } from '@/common/components/Button/Button';
 
 import { MODAL_SIZES } from '@/common/components/Modal/constants';
 
-import './styles/modal.scss';
+import './modal.scss';
 
 interface IModalProps {
   isOpen: boolean;
