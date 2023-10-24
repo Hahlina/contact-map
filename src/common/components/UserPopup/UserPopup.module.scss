@@ -93,13 +93,12 @@
   p,
   span {
     @include flex-center;
+    cursor: pointer;
     gap: 10px;
   }
 
-  p:hover {
-    span {
-      color: $color-white-100;
-    }
+  &:hover {
+    color: $color-white-100;
 
     &:last-child {
       span:first-child {

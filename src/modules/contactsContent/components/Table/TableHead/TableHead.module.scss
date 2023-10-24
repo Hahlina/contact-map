@@ -6,11 +6,13 @@
 
   th {
     padding: 20px 15px;
-    text-align: left;
+    text-align: center;
     font-weight: 500;
-    font-size: 12px;
+    overflow-wrap: break-word;
+    font-size: clamp(0.625rem, 0.557rem + 0.34vw, 0.813rem);
     color: #fff;
     text-transform: uppercase;
     border-collapse: collapse;
   }
 }
+

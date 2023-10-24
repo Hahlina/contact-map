@@ -1,41 +1,21 @@
 @import '@/common/styles/mixins';
 
 .tableWrapper {
-  @include flex-center-column;
+  @include flex-center;
 
   gap: 20px;
   position: relative;
-  width: auto;
+  width: 100%;
   height: 100%;
   overflow-x: scroll;
 
-  table {
+  .table {
     width: 100%;
     height: 500px;
     max-width: 1200px;
-    min-width: 800px;
+    min-width: 600px;
     border-collapse: collapse;
     table-layout: fixed;
-
-    thead {
-      tr {
-        th {
-          text-align: center;
-          overflow-wrap: break-word;
-          font-size: clamp(0.625rem, 0.557rem + 0.34vw, 0.813rem);
-        }
-      }
-    }
-
-    tbody {
-      tr {
-        td {
-          text-align: center;
-          overflow-wrap: break-word;
-          font-size: clamp(0.625rem, 0.557rem + 0.34vw, 0.813rem);
-        }
-      }
-    }
   }
 
   @media screen and (max-width: 875px) {
@@ -45,13 +25,13 @@
 
 
 .pagination {
+  position: relative;
   display: flex;
   justify-content: center;
   width: 100%;
   list-style: none;
-  padding-bottom: 50px;
-  bottom: 0;
-  z-index: 100;
+  padding-bottom: 100px;
+  bottom: -50px;
 }
 
 .pageLink {

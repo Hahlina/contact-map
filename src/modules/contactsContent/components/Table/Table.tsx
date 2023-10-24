@@ -33,11 +33,13 @@ export const Table: FC<ITableProps<TableData>> = ({
     setCurrentPage(selected.selected);
   };
   return (
-    <div className={styles.tableWrapper}>
-      <table className={styles.table}>
-        {keys && <TableHead data={keys} />}
-        {results && <TableBody data={results} />}
-      </table>
+    <>
+      <div className={styles.tableWrapper}>
+        <table className={styles.table}>
+          {keys && <TableHead data={keys} />}
+          {results && <TableBody data={results} />}
+        </table>
+      </div>
       <div className={styles.footer}>
         <ReactPaginate
           pageCount={pageCount}
@@ -56,6 +58,6 @@ export const Table: FC<ITableProps<TableData>> = ({
           disabledClassName={styles.disabledPage}
         />
       </div>
-    </div>
+    </>
   );
 };
