@@ -1,5 +1,5 @@
 'use client';
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { TableHead } from './TableHead/TableHead';
 import { TableBody } from '@/modules/contactsContent/components/Table/TableBody/TableBody';
 import { EMPTY_ARRAY } from '@/common/constants/initValue';
@@ -26,6 +26,10 @@ export const Table: FC<ITableProps<TableData>> = ({
   itemsPerPage,
   ...otherProps
 }) => {
+  const [initPagination, setInitPagination] = useState(false);
+  useEffect(() => {
+    setInitPagination(true);
+  }, []);
   const keys = results && results.length > 0 ? Object.keys(results[0]) : EMPTY_ARRAY;
 
   const pageCount = Math.ceil(count / itemsPerPage);
@@ -42,22 +46,24 @@ export const Table: FC<ITableProps<TableData>> = ({
         </table>
       </div>
       <div className={styles.footer}>
-        <ReactPaginate
-          pageCount={pageCount}
-          onPageChange={handlePageChange}
-          initialPage={currentPage}
-          marginPagesDisplayed={1}
-          pageRangeDisplayed={3}
-          previousLabel={'previous'}
-          nextLabel={'next'}
-          breakLabel={'...'}
-          containerClassName={styles.pagination}
-          pageLinkClassName={styles.pageLink}
-          activeClassName={styles.activePage}
-          previousLinkClassName={styles.pageLink}
-          nextLinkClassName={styles.pageLink}
-          disabledClassName={styles.disabledPage}
-        />
+        {initPagination && (
+          <ReactPaginate
+            pageCount={pageCount}
+            onPageChange={handlePageChange}
+            initialPage={currentPage}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={3}
+            previousLabel={'previous'}
+            nextLabel={'next'}
+            breakLabel={'...'}
+            containerClassName={styles.pagination}
+            pageLinkClassName={styles.pageLink}
+            activeClassName={styles.activePage}
+            previousLinkClassName={styles.pageLink}
+            nextLinkClassName={styles.pageLink}
+            disabledClassName={styles.disabledPage}
+          />
+        )}
       </div>
     </>
   );
