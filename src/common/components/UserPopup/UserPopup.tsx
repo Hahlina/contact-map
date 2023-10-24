@@ -4,9 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 import useOnClickOutside from '@/common/hooks/useClickOutside';
-import { BiLogOut, BiSolidContact } from 'react-icons/bi';
+import { BiLogOut } from 'react-icons/bi';
 import Avatar from '../../assets/placeholders/avatar.jpg';
-import { ROUTES } from '@/common/constants/routes';
 
 import styles from './UserPopUp.module.scss';
 
@@ -43,12 +42,6 @@ export const UserPopUp: FC<IUserPopUpProps> = ({ user, handleLogout, classNameIt
   };
 
   const items: IItem[] = [
-    {
-      type: POPUP_ITEMS_TYPE.LINK,
-      url: ROUTES.CONTACTS,
-      label: 'My contacts',
-      icon: <BiSolidContact />,
-    },
     {
       type: POPUP_ITEMS_TYPE.ACTION,
       onClick: () => handleLogout(),

@@ -9,7 +9,6 @@ interface IButtonProps {
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
-  variant?: 'glass';
 }
 
 export const Button: FC<IButtonProps> = ({
@@ -18,12 +17,11 @@ export const Button: FC<IButtonProps> = ({
   disabled = false,
   onClick,
   className,
-  variant = '',
   ...otherProps
 }) => {
   return (
     <button
-      className={classNames(styles.button, styles[variant], className)}
+      className={classNames(styles.button, className)}
       type={type}
       disabled={disabled}
       onClick={onClick}

@@ -1,23 +1,27 @@
 import { FC } from 'react';
+import { useUpdateContactMutation } from '@/common/api/services/contacts/contactsApi';
 import Input from '@/common/components/Input/Input';
-import { FORM_FIELD } from '@/common/constants/formField';
-import { INPUT_FIELD } from '@/common/components/Input/inputField';
 import { Button } from '@/common/components/Button/Button';
 import { useNotification } from '@/common/hooks/useNotification';
 import { useForm } from 'react-hook-form';
+import moment from 'moment';
+import DatePicker from 'react-datepicker';
 import { TableData } from '@/common/types/Api';
 import { EMPTY_STRING } from '@/common/constants/initValue';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { loginSchema } from '@/common/validateSchemas/loginSchema';
 import { NotificationContent } from '@/common/components/NotificationContent/NotificationContent';
+import { getValidDateFormat } from '@/common/utils/getValidDateFormat';
+import { contactUpdateSchema } from '@/common/validateSchemas/contactUpdateSchema';
+import { FORM_FIELD } from '@/common/constants/formField';
+import { INPUT_FIELD } from '@/common/components/Input/inputField';
 import {
   AUTH_MESSAGES,
   NOTIFICATION_TITLE,
   NOTIFICATION_TYPES,
 } from '@/common/constants/notification';
-import { useUpdateContactMutation } from '@/common/api/services/contacts/contactsApi';
+import { DATE_FORMATS } from '@/common/constants/dateFormats';
+
 import styles from './ContactUpdateForm.module.scss';
-import { contactUpdateSchema } from '@/common/validateSchemas/contactUpdateSchema';
 
 interface IContactUpdateFormProps extends TableData {
   onClose: () => void;
@@ -34,15 +38,16 @@ export const ContactUpdateForm: FC<IContactUpdateFormProps> = ({
 }) => {
   const notify = useNotification();
   const [updateContact, { data, isError, isLoading }] = useUpdateContactMutation();
+  const isValidDate = moment(birthday_date).isValid();
+  const validDate = getValidDateFormat(birthday_date);
   const formMethods = useForm<TableData>({
     defaultValues: {
       [INPUT_FIELD.NAME]: name,
       [INPUT_FIELD.EMAIL]: email,
-      [INPUT_FIELD.BIRTHDAY_DATE]: birthday_date,
+      [INPUT_FIELD.BIRTHDAY_DATE]: isValidDate ? birthday_date : EMPTY_STRING,
       [INPUT_FIELD.PHONE_NUMBER]: phone_number,
-      [INPUT_FIELD.ADDRESS]: address || EMPTY_STRING,
+      [INPUT_FIELD.ADDRESS]: address,
     },
-
     mode: 'onBlur',
     resolver: yupResolver(contactUpdateSchema),
   });
@@ -61,14 +66,12 @@ export const ContactUpdateForm: FC<IContactUpdateFormProps> = ({
         return notify(
           <NotificationContent
             title={NOTIFICATION_TITLE.ERROR}
-            body={AUTH_MESSAGES.LOGIN_ERROR}
+            body={AUTH_MESSAGES.ERROR}
           />,
           NOTIFICATION_TYPES.ERROR,
         );
       }
-    } catch (e) {
-      console.log('-> e', e);
-    }
+    } catch (e) {}
   };
 
   return (
@@ -86,11 +89,17 @@ export const ContactUpdateForm: FC<IContactUpdateFormProps> = ({
           {...register(INPUT_FIELD.EMAIL)}
           errorMessage={errors?.email?.message}
         />
-        <Input
-          placeholder={FORM_FIELD.BIRTHDAY}
-          type={INPUT_FIELD.DATE}
-          {...register(INPUT_FIELD.BIRTHDAY_DATE)}
-          errorMessage={errors?.birthday_date?.message}
+        <DatePicker
+          className={styles.dataPicker}
+          selected={new Date(isValidDate ? birthday_date : validDate)}
+          onChange={(date) => {
+            formMethods.setValue(
+              INPUT_FIELD.BIRTHDAY_DATE,
+              date ? moment(date).format(DATE_FORMATS.DD_MM_YY) : EMPTY_STRING,
+            );
+          }}
+          dateFormat={DATE_FORMATS.DD_MM_YY}
+          placeholderText={FORM_FIELD.BIRTHDAY}
         />
         <Input
           placeholder={FORM_FIELD.PHONE}
@@ -103,9 +112,7 @@ export const ContactUpdateForm: FC<IContactUpdateFormProps> = ({
           {...register(INPUT_FIELD.ADDRESS)}
           errorMessage={errors?.address?.message}
         />
-        <Button type={'submit'} variant={'glass'}>
-          Update contact
-        </Button>
+        <Button type={'submit'}>Update contact</Button>
       </form>
     </div>
   );

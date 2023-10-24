@@ -37,8 +37,8 @@ export const ConfirmModal: FC<IConfirmModalProps> = ({
   center = true,
   blockScroll = false,
   closeOnOverlayClick = true,
-  buttonCancelLabel = 'Hi',
-  buttonConfirmLabel = 'Так',
+  buttonCancelLabel = 'No',
+  buttonConfirmLabel = 'Yes',
   classNames: providedClassNames,
 }) => {
   const [modalLoading, setModalLoading] = useState<boolean>(false);
@@ -79,11 +79,10 @@ export const ConfirmModal: FC<IConfirmModalProps> = ({
         <div className={bodyModalClasses}>{children}</div>
       </div>
       <div className={styles.footer}>
-        <Button variant={'glass'} className={buttonCancelClasses} onClick={onClose}>
+        <Button className={buttonCancelClasses} onClick={onClose}>
           {buttonCancelLabel}
         </Button>
         <Button
-          variant={'glass'}
           className={buttonConfirmClasses}
           onClick={handleConfirmModal}
           disabled={modalLoading}

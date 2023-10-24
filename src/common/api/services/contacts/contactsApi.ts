@@ -26,9 +26,9 @@ export const contactsApi = createApi({
         }),
         invalidatesTags: ['Contacts'],
       }),
-      removeContact: build.mutation<Pick<TableData, 'id'>, Pick<TableData, 'id'>>({
-        query: (contact) => ({
-          url: `/table/${contact.id}`,
+      removeContact: build.mutation<{ id: number }, { id: number }>({
+        query: (id) => ({
+          url: `/table/${id}`,
           method: 'DELETE',
         }),
         invalidatesTags: ['Contacts'],

@@ -27,6 +27,12 @@ export const RemoveContactConfirmModal: FC<IRemoveContactConfirmModalProps> = ({
   const [removeContact, { isSuccess, isError }] = useRemoveContactMutation();
   const onConfirmRemove = async () => {
     try {
+      const contactId = id ? id : 0;
+      const deleteResponse = await removeContact({ id: contactId });
+      if ('error' in deleteResponse) {
+        onClose();
+        throw new Error(JSON.stringify(deleteResponse));
+      }
       notify(
         <NotificationContent
           title={NOTIFICATION_TITLE.SUCCESS}
@@ -34,18 +40,26 @@ export const RemoveContactConfirmModal: FC<IRemoveContactConfirmModalProps> = ({
         />,
         NOTIFICATION_TYPES.SUCCESS,
       );
-      onClose();
     } catch (error) {
-      notify(
-        <NotificationContent
-          title={NOTIFICATION_TITLE.ERROR}
-          body={TABLE_ACTION_MESSAGES.ERROR}
-        />,
-        NOTIFICATION_TYPES.ERROR,
-      );
+      if (error instanceof Error) {
+        const errorData = JSON.parse(error.message);
+        const errorMessage = errorData?.error?.data?.detail;
+        if (errorData && errorMessage) {
+          return notify(
+            <NotificationContent title={NOTIFICATION_TITLE.ERROR} body={errorMessage} />,
+            NOTIFICATION_TYPES.ERROR,
+          );
+        } else
+          return notify(
+            <NotificationContent
+              title={NOTIFICATION_TITLE.ERROR}
+              body={TABLE_ACTION_MESSAGES.ERROR}
+            />,
+            NOTIFICATION_TYPES.ERROR,
+          );
+      }
     }
   };
-
   return (
     <ConfirmModal
       isOpen={isOpen}

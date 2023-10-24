@@ -1,13 +1,12 @@
-@import "@/common/styles/mixins";
+@import '@/common/styles/mixins';
 
 .contactsWrapper {
   @include flex-center-column;
 
   width: 100%;
   min-height: 100%;
-  padding: 0 30px 50px 30px;
 
-  h2{
+  h2 {
     margin: 50px 0;
   }
 }

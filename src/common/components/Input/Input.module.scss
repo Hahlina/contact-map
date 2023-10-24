@@ -1,5 +1,5 @@
-@import "@/common/styles/variables";
-@import "@/common/styles/mixins";
+@import '@/common/styles/variables';
+@import '@/common/styles/mixins';
 
 .inputWrapper {
   @include flex-column;
@@ -24,7 +24,8 @@
   color: $color-white;
   transition: border 0.3s ease-in-out;
 
-  &:focus-visible, &:focus {
+  &:focus-visible,
+  &:focus {
     outline: none;
   }
 
@@ -34,7 +35,8 @@
     color: $color-white;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border-bottom-color: $color-white;
   }
 
@@ -54,7 +56,7 @@
   color: $color-white;
 
   &::before {
-    content: "* ";
+    content: '* ';
     color: $color-red-100;
   }
 }

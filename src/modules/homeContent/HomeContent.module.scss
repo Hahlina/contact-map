@@ -1,18 +1,16 @@
-@import "@/common/styles/mixins";
-@import "@/common/styles/helpers";
+@import '@/common/styles/mixins';
+@import '@/common/styles/helpers';
 
-
-.homeWrapper{
+.homeWrapper {
   @include flex-center-column;
 
   height: 100vh;
 }
 
-.title{
-  //@extend %text-animation;
+.title {
   @include font(clamp(2.5rem, 1.591rem + 4.55vw, 5rem), 700);
 }
 
-.button{
+.button {
   margin-top: 50px;
 }

@@ -10,7 +10,7 @@ export const HomeContent = () => {
   return (
     <div className={styles.homeWrapper}>
       <h1 className={styles.title}>Contact-map</h1>
-      <Button variant={'glass'} className={styles.button} onClick={showLoginModal}>
+      <Button className={styles.button} onClick={showLoginModal}>
         Sign In
       </Button>
     </div>

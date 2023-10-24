@@ -1,17 +1,84 @@
-@import "@/common/styles/mixins";
+@import '@/common/styles/mixins';
 
-.tableWrapper{
-  @include flex-center;
+.tableWrapper {
+  @include flex-center-column;
 
-  width: 100%;
-  overflow: scroll;
+  gap: 20px;
+  position: relative;
+  width: auto;
+  height: 100%;
+  overflow-x: scroll;
 
-
-  table{
+  table {
     width: 100%;
-    max-width: 900px;
+    height: 500px;
+    max-width: 1200px;
     min-width: 800px;
     border-collapse: collapse;
     table-layout: fixed;
+
+    thead {
+      tr {
+        th {
+          text-align: center;
+          overflow-wrap: break-word;
+          font-size: clamp(0.625rem, 0.557rem + 0.34vw, 0.813rem);
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          text-align: center;
+          overflow-wrap: break-word;
+          font-size: clamp(0.625rem, 0.557rem + 0.34vw, 0.813rem);
+        }
+      }
+    }
   }
+
+  @media screen and (max-width: 875px) {
+    justify-content: start;
+  }
+}
+
+.footer {
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  list-style: none;
+  padding-bottom: 50px;
+  bottom: 0;
+  z-index: 100;
+}
+
+.pageLink {
+  padding: 10px;
+  margin: 0 5px;
+  background-color: rgba(173, 173, 173, 0.27);
+  color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.activePage {
+  background-color: rgba(193, 197, 206, 0.15);
+  color: #fff;
+  font-weight: bold;
+}
+
+.disabledPage {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.pageLink:hover {
+  background-color: #525252;
+  color: #fff;
 }

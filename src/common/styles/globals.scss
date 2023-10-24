@@ -15,6 +15,10 @@ body {
 
   font-family: FixelDisplay, sans-serif;
   color: $color-white;
+  @extend %scrollbar-thumb-hover;
+  @extend %scrollbar-thumb;
+  @extend %scrollbar-style;
+
 
 }
 
@@ -39,7 +43,6 @@ a {
   text-decoration: none;
   color: $color-white-200;
 }
-
 
 html {
   -webkit-touch-callout: none;

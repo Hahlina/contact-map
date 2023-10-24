@@ -1,23 +1,61 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { TableHead } from './TableHead/TableHead';
-import { TableData } from '@/common/types/Api';
 import { TableBody } from '@/modules/contactsContent/components/Table/TableBody/TableBody';
 import { EMPTY_ARRAY } from '@/common/constants/initValue';
+import ReactPaginate from 'react-paginate';
+import { TableData } from '@/common/types/Api';
 
 import styles from './Table.module.scss';
 
 interface ITableProps<T> {
-  data?: TableData[] | T[];
+  results: T[];
+  count: number;
+  next: string | null;
+  previous: string | null;
+  currentPage: number;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
+  itemsPerPage: number;
 }
 
-export const Table: FC<ITableProps<any>> = ({ data }) => {
-  const keys = data && data.length > 0 ? Object.keys(data[0]) : EMPTY_ARRAY;
+export const Table: FC<ITableProps<TableData>> = ({
+  results,
+  count,
+  currentPage,
+  setCurrentPage,
+  itemsPerPage,
+  ...otherProps
+}) => {
+  const keys = results && results.length > 0 ? Object.keys(results[0]) : EMPTY_ARRAY;
+
+  const pageCount = Math.ceil(count / itemsPerPage);
+
+  const handlePageChange = (selected: any) => {
+    setCurrentPage(selected.selected);
+  };
   return (
     <div className={styles.tableWrapper}>
       <table className={styles.table}>
         {keys && <TableHead data={keys} />}
-        {data && <TableBody data={data} />}
+        {results && <TableBody data={results} />}
       </table>
+      <div className={styles.footer}>
+        <ReactPaginate
+          pageCount={pageCount}
+          onPageChange={handlePageChange}
+          initialPage={currentPage}
+          marginPagesDisplayed={1}
+          pageRangeDisplayed={3}
+          previousLabel={'previous'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          containerClassName={styles.pagination}
+          pageLinkClassName={styles.pageLink}
+          activeClassName={styles.activePage}
+          previousLinkClassName={styles.pageLink}
+          nextLinkClassName={styles.pageLink}
+          disabledClassName={styles.disabledPage}
+        />
+      </div>
     </div>
   );
 };

@@ -1,12 +1,12 @@
-@import "@/common/styles/mixins";
+@import '@/common/styles/mixins';
 
-.loginForm{
+.loginForm {
   @include flex-column;
 
   gap: 30px;
 }
 
-.title{
+.title {
   @include font(22px, 500);
 
   text-align: center;

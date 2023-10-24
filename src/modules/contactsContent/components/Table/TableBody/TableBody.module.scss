@@ -1,4 +1,4 @@
-@import "@/common/styles/variables";
+@import '@/common/styles/variables';
 
 .tableBody {
   width: 100%;
@@ -24,17 +24,16 @@
 
   tr:nth-child(2n) td {
     background: rgba(255, 255, 255, 0.02);
-
   }
-  tr:nth-child(2n){
-    &:hover{
+  tr:nth-child(2n) {
+    &:hover {
       background-color: rgba(255, 255, 255, 0.1);
     }
   }
 }
 
-
-.editIcon, .removeIcon {
+.editIcon,
+.removeIcon {
   font-size: 16px;
   cursor: pointer;
 }

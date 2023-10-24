@@ -105,7 +105,7 @@ export const LoginForm: FC<ILoginFormProps> = ({ onClose }) => {
           {...register(INPUT_FIELD.PASSWORD)}
           errorMessage={errors?.password?.message}
         />
-        <Button type={'submit'} variant={'glass'} disabled={isLoading}>
+        <Button type={'submit'} disabled={isLoading}>
           Sign In
         </Button>
       </form>

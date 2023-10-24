@@ -1,11 +1,11 @@
-@import "src/common/styles/variables";
+@import 'src/common/styles/variables';
 
 $modal-width-config: (
-        xs: 400,
-        sm: 600,
-        md: 750,
-        lg: 900,
-        xl: 1200,
+  xs: 400,
+  sm: 600,
+  md: 750,
+  lg: 900,
+  xl: 1200,
 );
 
 .react-responsive-modal {

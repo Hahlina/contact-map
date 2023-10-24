@@ -4,7 +4,7 @@
   border: 1px solid $border-color;
   border-radius: 7px;
   background-color: rgba(210, 211, 218, 0.2);
-  box-shadow:  0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2.8px);
   font-size: 10px;
   line-height: 150%;
@@ -18,7 +18,7 @@
 }
 
 .success-toast {
-  @include toast-styles ($color-green-100, $color-green-100);
+  @include toast-styles($color-green-100, $color-green-100);
 }
 
 .info-toast {
