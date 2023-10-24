@@ -1,3 +1,4 @@
+'use client';
 import { Dispatch, FC, SetStateAction } from 'react';
 import { TableHead } from './TableHead/TableHead';
 import { TableBody } from '@/modules/contactsContent/components/Table/TableBody/TableBody';
