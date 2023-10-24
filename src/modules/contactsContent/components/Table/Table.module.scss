@@ -24,39 +24,3 @@
 }
 
 
-.pagination {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  list-style: none;
-  padding-bottom: 100px;
-  bottom: -50px;
-}
-
-.pageLink {
-  padding: 10px;
-  margin: 0 5px;
-  background-color: rgba(173, 173, 173, 0.27);
-  color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.activePage {
-  background-color: rgba(193, 197, 206, 0.15);
-  color: #fff;
-  font-weight: bold;
-}
-
-.disabledPage {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.pageLink:hover {
-  background-color: #525252;
-  color: #fff;
-}

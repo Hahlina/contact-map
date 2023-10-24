@@ -7,6 +7,7 @@ import ReactPaginate from 'react-paginate';
 import { TableData } from '@/common/types/Api';
 
 import styles from './Table.module.scss';
+import './Pagination.css';
 
 interface ITableProps<T> {
   results: T[];
@@ -56,12 +57,12 @@ export const Table: FC<ITableProps<TableData>> = ({
             previousLabel={'previous'}
             nextLabel={'next'}
             breakLabel={'...'}
-            containerClassName={styles.pagination}
-            pageLinkClassName={styles.pageLink}
-            activeClassName={styles.activePage}
-            previousLinkClassName={styles.pageLink}
-            nextLinkClassName={styles.pageLink}
-            disabledClassName={styles.disabledPage}
+            containerClassName={'pagination'}
+            pageLinkClassName={'pageLink'}
+            activeClassName={'activePage'}
+            previousLinkClassName={'pageLink'}
+            nextLinkClassName={'pageLink'}
+            disabledClassName={'disabledPage'}
           />
         )}
       </div>
